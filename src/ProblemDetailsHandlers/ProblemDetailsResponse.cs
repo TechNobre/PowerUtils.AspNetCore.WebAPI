@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text.Json;
 
 namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
@@ -86,7 +87,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
         #region PUBLIC STATIC METHODS
         public static ProblemDetailsResponse Create(int statusCode)
         { // DONE
-            ProblemDetailsResponse result = new ProblemDetailsResponse();
+            var result = new ProblemDetailsResponse();
 
             result.Status = statusCode;
             result.Type = result.Status.GetStatusCodeLink();
@@ -102,7 +103,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
 
         public static ProblemDetailsResponse Create(string method, string path, int statusCode)
         { // DONE
-            ProblemDetailsResponse result = new ProblemDetailsResponse();
+            var result = new ProblemDetailsResponse();
 
             result.Status = statusCode;
             result.Type = result.Status.GetStatusCodeLink();
@@ -118,7 +119,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
 
         public static ProblemDetailsResponse Create(int statusCode, string errorMessage)
         { // DONE
-            ProblemDetailsResponse result = new ProblemDetailsResponse();
+            var result = new ProblemDetailsResponse();
 
             result.Status = statusCode;
             result.Type = result.Status.GetStatusCodeLink();
@@ -134,7 +135,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
 
         public static ProblemDetailsResponse Create(HttpContext httpContext)
         { // DONE
-            ProblemDetailsResponse result = new ProblemDetailsResponse();
+            var result = new ProblemDetailsResponse();
 
             result.Status = httpContext?.Response?.StatusCode ?? 500; // Default value
             result.Type = result.Status.GetStatusCodeLink();
@@ -156,7 +157,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
 
         public static ProblemDetailsResponse Create(HttpContext httpContext, ModelStateDictionary modelState)
         { // DONE
-            ProblemDetailsResponse result = new ProblemDetailsResponse();
+            var result = new ProblemDetailsResponse();
 
             result.Status = httpContext?.Response?.StatusCode ?? 400; // Default value
             result.Type = result.Status.GetStatusCodeLink();
@@ -177,7 +178,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
 
         public static ProblemDetailsResponse Create(HttpContext httpContext, IEnumerable<ValidationNotification> notifications)
         { // DONE
-            ProblemDetailsResponse result = new ProblemDetailsResponse();
+            var result = new ProblemDetailsResponse();
 
             result.Status = httpContext?.Response?.StatusCode ?? 400; // Default value
             result.Type = result.Status.GetStatusCodeLink();
@@ -202,9 +203,36 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
             return result;
         }
 
+        public static ProblemDetailsResponse Create(HttpContext httpContext, HttpStatusCode statusCode, IEnumerable<ValidationNotification> notifications)
+        { // DONE
+            var result = new ProblemDetailsResponse();
+
+            result.Status = (int)statusCode;
+            result.Type = result.Status.GetStatusCodeLink();
+            result.Title = ReasonPhrases.GetReasonPhrase(result.Status);
+
+            result.Instance = _mapInstance(httpContext);
+
+            result.TraceID = Activity.Current?.Id ?? httpContext?.TraceIdentifier;
+            if (string.IsNullOrWhiteSpace(result.TraceID))
+            {
+                result.TraceID = $"guid:{Guid.NewGuid()}";
+            }
+
+            var errors = notifications
+                .ToDictionary(
+                key => key.Property,
+                code => code.ErrorCode
+            );
+
+            result.Errors = errors;
+
+            return result;
+        }
+
         public static ProblemDetailsResponse Create(ActionContext actionContext)
         { // DONE
-            ProblemDetailsResponse result = new ProblemDetailsResponse();
+            var result = new ProblemDetailsResponse();
 
             result.Status = actionContext?.HttpContext?.Response?.StatusCode ?? 500; // Default value
             result.Type = result.Status.GetStatusCodeLink();

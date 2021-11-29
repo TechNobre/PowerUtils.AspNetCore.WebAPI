@@ -44,7 +44,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
         #region CONSTRUCTOR
         public ProblemFactory(IActionResultExecutor<ObjectResult> executor)
         {
-            _executor = executor ?? throw new ArgumentNullException($"{typeof(ProblemFactory).Namespace} > {nameof(IActionResultExecutor<ObjectResult>)}");
+            this._executor = executor ?? throw new ArgumentNullException($"{typeof(ProblemFactory).Namespace} > {nameof(IActionResultExecutor<ObjectResult>)}");
         }
         #endregion
 

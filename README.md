@@ -67,5 +67,14 @@ dotnet add package PowerUtils.AspNetCore.WebAPI
 ## Release Notes
 
 
+### v1.1.0 - 2021/11/29
+ 
+#### Updates
+- Update nuget dependecies;
+
+#### Enhancements
+- Improved `ProblemDetailsMiddleware` to mapping correctly the `ValidationException`;
+
+
 ### v1.0.0 - 2021/11/21
 - Kick start project
