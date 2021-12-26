@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1.PowerUtils.AspNetCore.WebAPI", "src\1.PowerUtils.AspNetCore.WebAPI.csproj", "{AE4CD1C2-B8D0-410E-855F-F33DBEDC1575}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.PowerUtils.AspNetCore.WebAPI.Tests", "test\2.PowerUtils.AspNetCore.WebAPI.Tests.csproj", "{85338A58-2909-4BD4-A436-F468A1FCC85F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.PowerUtils.AspNetCore.WebAPI.Tests", "tests\2.PowerUtils.AspNetCore.WebAPI.Tests.csproj", "{85338A58-2909-4BD4-A436-F468A1FCC85F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{221464BA-8DB1-4D0C-B5E9-FE127839DD74}"
 	ProjectSection(SolutionItems) = preProject
