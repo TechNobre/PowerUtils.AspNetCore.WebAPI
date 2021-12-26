@@ -1,0 +1,10 @@
+[*.cs]
+
+
+###############################
+# Hide dotnet messages        #
+###############################
+
+
+# Remove unused parameter (IDE0060) - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0060
+#dotnet_diagnostic.IDE0060.severity = none
