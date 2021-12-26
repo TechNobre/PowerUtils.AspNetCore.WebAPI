@@ -12,9 +12,7 @@ namespace PowerUtils.AspNetCore.WebAPI.Validations
         private readonly IValidationNotificationsPipeline _validations;
 
         public ValidationNotificationsFilter(IValidationNotificationsPipeline validationNotificationsPipeline)
-        {
-            _validations = validationNotificationsPipeline;
-        }
+            => _validations = validationNotificationsPipeline;
 
         public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
         {

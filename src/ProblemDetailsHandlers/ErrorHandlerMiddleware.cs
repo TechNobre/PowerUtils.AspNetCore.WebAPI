@@ -17,10 +17,10 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
     { // DONE
         public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder app)
         {
-            ILoggerFactory loggerFactory = app.ApplicationServices.GetService(typeof(ILoggerFactory)) as ILoggerFactory;
-            ILogger logger = loggerFactory.CreateLogger("ErrorHandler");
+            var loggerFactory = app.ApplicationServices.GetService(typeof(ILoggerFactory)) as ILoggerFactory;
+            var logger = loggerFactory.CreateLogger("ErrorHandler");
 
-            ProblemFactory factory = app.ApplicationServices.GetService(typeof(ProblemFactory)) as ProblemFactory;
+            var factory = app.ApplicationServices.GetService(typeof(ProblemFactory)) as ProblemFactory;
 
             return app.UseExceptionHandler(appError =>
                 appError.Run(async httpContext =>
@@ -28,7 +28,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
                     // DONE
                     httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-                    IExceptionHandlerFeature exceptionDetails = httpContext.Features.Get<IExceptionHandlerFeature>();
+                    var exceptionDetails = httpContext.Features.Get<IExceptionHandlerFeature>();
                     var exception = exceptionDetails?.Error;
 
                     // Create response
@@ -55,7 +55,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
                         );
                     }
 
-                    factory.ClearResponse(httpContext, httpContext.Response.StatusCode);
+                    ProblemFactory.ClearResponse(httpContext, httpContext.Response.StatusCode);
                     httpContext.Response.ContentType = ExtendedMediaTypeNames.ProblemApplication.JSON;
 
                     // Write error details in body response

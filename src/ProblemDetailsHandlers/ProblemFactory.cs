@@ -16,11 +16,11 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
 {
     public class ProblemFactory : ProblemDetailsFactory
     {
-        #region CONTAINS
-        private static readonly ActionDescriptor EMPTY_ACTION_DESCRIPTOR = new();
-        private static readonly RouteData EMPTY_ROUTE_DATA = new();
+        #region PRIVATE FIELDS
+        private static readonly ActionDescriptor _emptyActionDescriptor = new();
+        private static readonly RouteData _emptyRouteData = new();
 
-        private static readonly HashSet<string> AllowedHeaderNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        private static readonly HashSet<string> _allowedHeaderNames = new(StringComparer.OrdinalIgnoreCase)
         {
             HeaderNames.AccessControlAllowCredentials,
             HeaderNames.AccessControlAllowHeaders,
@@ -33,19 +33,14 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
 
             HeaderNames.WWWAuthenticate,
         };
-        #endregion
 
-
-        #region PRIVATE PROPERTIES
-        private IActionResultExecutor<ObjectResult> _executor { get; }
+        private readonly IActionResultExecutor<ObjectResult> _executor;
         #endregion
 
 
         #region CONSTRUCTOR
         public ProblemFactory(IActionResultExecutor<ObjectResult> executor)
-        {
-            this._executor = executor ?? throw new ArgumentNullException($"{typeof(ProblemFactory).Namespace} > {nameof(IActionResultExecutor<ObjectResult>)}");
-        }
+            => _executor = executor ?? throw new ArgumentNullException($"{typeof(ProblemFactory).Namespace} > {nameof(IActionResultExecutor<ObjectResult>)}");
         #endregion
 
 
@@ -59,14 +54,14 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
             string instance = null
         )
         {
-            int status = statusCode ?? httpContext.Response.StatusCode;
+            var status = statusCode ?? httpContext.Response.StatusCode;
 
             // It feels weird to mutate the response inside this method, but it's the
             // only way to pass the status code to MapStatusCode and it will be set
             // on the response when writing the problem details response later anyway.
             httpContext.Response.StatusCode = status;
 
-            ProblemDetails result = ProblemDetailsResponse
+            var result = ProblemDetailsResponse
                 .Create(httpContext)
                 .ToBaseProblemDetails();
 
@@ -92,7 +87,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
             string instance = null
         )
         {
-            ValidationProblemDetails result = new ValidationProblemDetails(modelStateDictionary);
+            var result = new ValidationProblemDetails(modelStateDictionary);
 
             _setProblemDetailsDefault(
                 result,
@@ -109,19 +104,19 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
 
 
         #region PUBLIC STATIC METHOD
-        public void ClearResponse(HttpContext context, int statusCode)
+        public static void ClearResponse(HttpContext context, int statusCode)
         { // DONE
             // Make sure problem responses are never cached.
-            HeaderDictionary headers = new HeaderDictionary();
+            var headers = new HeaderDictionary();
             headers.Append(HeaderNames.CacheControl, "no-cache, no-store, must-revalidate");
             headers.Append(HeaderNames.Pragma, "no-cache");
             headers.Append(HeaderNames.Expires, "0");
 
-            foreach (KeyValuePair<string, StringValues> header in context.Response.Headers)
+            foreach (var header in context.Response.Headers)
             {
                 // Because the CORS middleware adds all the headers early in the pipeline,
                 // we want to copy over the existing Access-Control-* headers after resetting the response.
-                if (AllowedHeaderNames.Contains(header.Key))
+                if (_allowedHeaderNames.Contains(header.Key))
                 {
                     headers.Add(header);
                 }
@@ -130,7 +125,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
             context.Response.Clear();
             context.Response.StatusCode = statusCode;
 
-            foreach (KeyValuePair<string, StringValues> header in headers)
+            foreach (var header in headers)
             {
                 context.Response.Headers.Add(header);
             }
@@ -138,11 +133,11 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
 
         public async Task WriteProblemDetails(HttpContext context, ProblemDetailsResponse problemDetails)
         {
-            RouteData routeData = context.GetRouteData() ?? EMPTY_ROUTE_DATA;
+            var routeData = context.GetRouteData() ?? _emptyRouteData;
 
-            ActionContext actionContext = new ActionContext(context, routeData, EMPTY_ACTION_DESCRIPTOR);
+            var actionContext = new ActionContext(context, routeData, _emptyActionDescriptor);
 
-            ObjectResult result = new ObjectResult(problemDetails)
+            var result = new ObjectResult(problemDetails)
             {
                 StatusCode = problemDetails.Status,
                 ContentTypes = new MediaTypeCollection()

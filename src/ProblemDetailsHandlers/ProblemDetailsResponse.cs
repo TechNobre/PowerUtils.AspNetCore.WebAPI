@@ -62,9 +62,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
         /// </summary>
         /// <returns></returns>
         public override string ToString()
-        { // DONE
-            return JsonSerializer.Serialize(this);
-        }
+            => JsonSerializer.Serialize(this);
 
         /// <summary>
         /// Convert ProblemDetailsResponse to ProblemDetails
@@ -72,7 +70,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
         /// <returns>ProblemDetails result</returns>
         public ProblemDetails ToBaseProblemDetails()
         {
-            ProblemDetails problemDetails = new ProblemDetails();
+            var problemDetails = new ProblemDetails();
 
             problemDetails.Type = Type;
             problemDetails.Title = Title;
@@ -256,7 +254,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
             IValidationNotificationsPipeline validationNotificationsPipeline
         )
         { // DONE
-            ProblemDetailsResponse result = new ProblemDetailsResponse();
+            var result = new ProblemDetailsResponse();
 
             result.Status = (int)validationNotificationsPipeline.StatusCode;
             result.Type = result.Status.GetStatusCodeLink();

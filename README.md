@@ -67,6 +67,12 @@ dotnet add package PowerUtils.AspNetCore.WebAPI
 ## Release Notes
 
 
+### v2.0.0 - ???
+
+#### Breaking Changes
+- Changed method 'ProblemFactory.ClearResponse()' to 'static' ;
+
+
 ### v1.1.0 - 2021/11/29
  
 #### Updates

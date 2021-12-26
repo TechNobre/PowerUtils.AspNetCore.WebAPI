@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -24,9 +24,9 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
             ILogger<ProblemDetailsMiddleware> logger
         )
         {
-            this._next = next ?? throw new ArgumentNullException($"{typeof(ProblemDetailsMiddleware).Namespace} > {nameof(RequestDelegate)}");
-            this._factory = factory ?? throw new ArgumentNullException($"{typeof(ProblemDetailsMiddleware).Namespace} > {nameof(ProblemFactory)}");
-            this._logger = logger ?? throw new ArgumentNullException($"{typeof(ProblemDetailsMiddleware).Namespace} > {nameof(ILogger<ProblemDetailsMiddleware>)}");
+            _next = next ?? throw new ArgumentNullException($"{typeof(ProblemDetailsMiddleware).Namespace} > {nameof(RequestDelegate)}");
+            _factory = factory ?? throw new ArgumentNullException($"{typeof(ProblemDetailsMiddleware).Namespace} > {nameof(ProblemFactory)}");
+            _logger = logger ?? throw new ArgumentNullException($"{typeof(ProblemDetailsMiddleware).Namespace} > {nameof(ILogger<ProblemDetailsMiddleware>)}");
         }
         #endregion
 
@@ -74,7 +74,7 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
             // Only override response was not started. https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-5.0#create-a-middleware-pipeline-with-iapplicationbuilder
             if (httpContext.Response.HasStarted)
             { // TODO: it is not very correct when the response was setted by 'ValidationNotificationsFilter'. The 'problemDetails' does not have the error list
-                this._logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already started > {problemDetails}");
+                _logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already started > {problemDetails}");
 
                 return Task.CompletedTask;
             }
@@ -82,15 +82,15 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
             { // Only override response without "content length"
 
                 // TODO: it is not very correct when the response was setted by 'ValidationNotificationsFilter. The 'problemDetails' does not have the error list
-                this._logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already has content > {problemDetails}");
+                _logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already has content > {problemDetails}");
 
                 return Task.CompletedTask;
             }
             else
             {
-                this._logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > {problemDetails}");
+                _logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > {problemDetails}");
 
-                this._factory.ClearResponse(httpContext, httpContext.Response.StatusCode);
+                ProblemFactory.ClearResponse(httpContext, httpContext.Response.StatusCode);
 
                 return _factory.WriteProblemDetails(httpContext, problemDetails);
             }
@@ -104,22 +104,22 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
             // Only override response was not started. https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-5.0#create-a-middleware-pipeline-with-iapplicationbuilder
             if (httpContext.Response.HasStarted)
             {
-                this._logger.LogError($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already started > {exception}");
+                _logger.LogError($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already started > {exception}");
 
                 return Task.CompletedTask;
             }
             else if (httpContext.Response.ContentLength.HasValue)
             { // Only override response without "content length"
-                this._logger.LogError($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already has content > {exception}");
+                _logger.LogError($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already has content > {exception}");
 
                 return Task.CompletedTask;
             }
             else
             {
 
-                this._logger.LogError($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > {exception}");
+                _logger.LogError($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > {exception}");
 
-                this._factory.ClearResponse(httpContext, httpContext.Response.StatusCode);
+                ProblemFactory.ClearResponse(httpContext, httpContext.Response.StatusCode);
 
                 return _factory.WriteProblemDetails(httpContext, problemDetails);
             }
@@ -135,21 +135,21 @@ namespace PowerUtils.AspNetCore.WebAPI.ProblemDetailsHandlers
             // Only override response was not started. https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-5.0#create-a-middleware-pipeline-with-iapplicationbuilder
             if (httpContext.Response.HasStarted)
             {
-                this._logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already started > {exception}");
+                _logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already started > {exception}");
 
                 return Task.CompletedTask;
             }
             else if (httpContext.Response.ContentLength.HasValue)
             { // Only override response without "content length"
-                this._logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already has content > {exception}");
+                _logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > Response already has content > {exception}");
 
                 return Task.CompletedTask;
             }
             else
             {
-                this._logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > {exception}");
+                _logger.LogDebug($"[REQUEST: {problemDetails.Instance} | STATUS CODE: {problemDetails.Status}] > {exception}");
 
-                _factory.ClearResponse(httpContext, httpContext.Response.StatusCode);
+                ProblemFactory.ClearResponse(httpContext, httpContext.Response.StatusCode);
 
                 return _factory.WriteProblemDetails(httpContext, problemDetails);
             }
