@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <!-- Assembly and projecto details -->
@@ -24,8 +24,7 @@
 
     <Description>Extensions, Helpers, Utils and Attributes for building WebAPIs with AspNetCore</Description>
     <PackageReleaseNotes>
-      - Update nuget dependecies;
-      - Improved `ProblemDetailsMiddleware` to mapping correctly the `ValidationException`;
+      - Changed method 'ProblemFactory.ClearResponse()' to 'static' ;
     </PackageReleaseNotes>
     <Description>Extensions, Helpers, Utils and Attributes for building WebAPIs with AspNetCore</Description>
     <PackageTags>PowerUtils;Utils;Extensions;Helpers;Utils;Attributes;WebAPI;WebAPIs;AspNetCore</PackageTags>
