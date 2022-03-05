@@ -4,7 +4,7 @@ Extensions, Helpers, Utils and Attributes for building WebAPIs with AspNetCore
 ![CI](https://github.com/TechNobre/PowerUtils.AspNetCore.WebAPI/actions/workflows/main.yml/badge.svg)
 [![NuGet](https://img.shields.io/nuget/v/PowerUtils.AspNetCore.WebAPI.svg)](https://www.nuget.org/packages/PowerUtils.AspNetCore.WebAPI)
 [![Nuget](https://img.shields.io/nuget/dt/PowerUtils.AspNetCore.WebAPI.svg)](https://www.nuget.org/packages/PowerUtils.AspNetCore.WebAPI)
-[![License: MIT](https://img.shields.io/github/license/ofpinewood/http-exceptions.svg)](https://github.com/TechNobre/PowerUtils.AspNetCore.WebAPI/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/github/license/TechNobre/PowerUtils.AspNetCore.WebAPI.svg)](https://github.com/TechNobre/PowerUtils.AspNetCore.WebAPI/blob/main/LICENSE)
 
 
 
