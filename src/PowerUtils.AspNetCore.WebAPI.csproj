@@ -22,7 +22,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>Copyright © 2021 by TechNobre</Copyright>
 
-    <Description>Extensions, Helpers, Utils and Attributes for building WebAPIs with AspNetCore</Description>
+    <Description>NuGets aggregator to facilitate the construction of Web APIs</Description>
     <PackageReleaseNotes>
       - Attributes module has been moved to PowerUtils.AspNetCore.Extensions project so it can be used individually;
       - Extensions module has been moved to PowerUtils.AspNetCore.Extensions project so it can be used individually;
@@ -30,7 +30,7 @@
       - Validation notifications middleware has been moved to PowerUtils.AspNetCore.ErrorHandler.Validations project so it can be used individually;
       - Removed dependecy from Microsoft.AspNetCore.Mvc.Versioning;
     </PackageReleaseNotes>
-    <Description>Extensions, Helpers, Utils and Attributes for building WebAPIs with AspNetCore</Description>
+    <Description>NuGets aggregator to facilitate the construction of Web APIs</Description>
     <PackageTags>PowerUtils;Utils;Extensions;Helpers;Utils;Attributes;WebAPI;WebAPIs;AspNetCore</PackageTags>
     <RepositoryUrl>https://github.com/TechNobre/PowerUtils.AspNetCore.WebAPI</RepositoryUrl>
     <PackageProjectUrl>https://github.com/TechNobre/PowerUtils.AspNetCore.WebAPI</PackageProjectUrl>
