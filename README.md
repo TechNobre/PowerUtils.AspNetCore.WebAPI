@@ -1,21 +1,11 @@
 # PowerUtils.AspNetCore.WebAPI
 Extensions, Helpers, Utils and Attributes for building WebAPIs with AspNetCore
 
-![CI](https://github.com/TechNobre/PowerUtils.AspNetCore.WebAPI/actions/workflows/main.yml/badge.svg)
+![Tests](https://github.com/TechNobre/PowerUtils.AspNetCore.WebAPI/actions/workflows/test-project.yml/badge.svg)
+
 [![NuGet](https://img.shields.io/nuget/v/PowerUtils.AspNetCore.WebAPI.svg)](https://www.nuget.org/packages/PowerUtils.AspNetCore.WebAPI)
 [![Nuget](https://img.shields.io/nuget/dt/PowerUtils.AspNetCore.WebAPI.svg)](https://www.nuget.org/packages/PowerUtils.AspNetCore.WebAPI)
 [![License: MIT](https://img.shields.io/github/license/TechNobre/PowerUtils.AspNetCore.WebAPI.svg)](https://github.com/TechNobre/PowerUtils.AspNetCore.WebAPI/blob/main/LICENSE)
-
-
-
-## Support to
-- .NET 5.0 and .NET 6.0
-
-
-
-## Features
-- [Installation](#Installation)
-- [TODO](#TODO)
 
 
 
@@ -23,13 +13,17 @@ Extensions, Helpers, Utils and Attributes for building WebAPIs with AspNetCore
 
 ### Dependencies
 
-- Microsoft.AspNetCore.Mvc.Versioning [NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Versioning/)
+- PowerUtils.AspNetCore.ErrorHandler.Validations [NuGet](https://www.nuget.org/packages/PowerUtils.AspNetCore.ErrorHandler.Validations/)
 - PowerUtils.Validations [NuGet](https://www.nuget.org/packages/PowerUtils.Validations/)
+- PowerUtils.AspNetCore.ErrorHandler.ResponseTypes [NuGet](https://www.nuget.org/packages/PowerUtils.AspNetCore.ErrorHandler.ResponseTypes/)
+- PowerUtils.AspNetCore.ErrorHandler [NuGet](https://www.nuget.org/packages/PowerUtils.AspNetCore.ErrorHandler/)
+- PowerUtils.AspNetCore.Extensions [NuGet](https://www.nuget.org/packages/PowerUtils.AspNetCore.Extensions/)
+- PowerUtils.GuardClauses.Validations [NuGet](https://www.nuget.org/packages/PowerUtils.GuardClauses.Validations/)
 
 
 ### How to use
 
-#### Install NuGet package <a name="Installation"></a>
+#### Install NuGet package
 This package is available through Nuget Packages: https://www.nuget.org/packages/PowerUtils.AspNetCore.WebAPI
 
 **Nuget**
@@ -44,9 +38,9 @@ dotnet add package PowerUtils.AspNetCore.WebAPI
 
 
 
-### TODO <a name="TODO"></a>
+### NOTE:
 
-// TODO: to document
+All modules of this nuget have been separated into other nugets so they can be used individually. At this moment this nuget only aggregates the nugets referred to in the dependencies
 
 
 
@@ -63,24 +57,6 @@ dotnet add package PowerUtils.AspNetCore.WebAPI
 
 
 
+## Changelog
 
-## Release Notes
-
-
-### v2.0.0 - ???
-
-#### Breaking Changes
-- Changed method 'ProblemFactory.ClearResponse()' to 'static' ;
-
-
-### v1.1.0 - 2021/11/29
- 
-#### Updates
-- Update nuget dependecies;
-
-#### Enhancements
-- Improved `ProblemDetailsMiddleware` to mapping correctly the `ValidationException`;
-
-
-### v1.0.0 - 2021/11/21
-- Kick start project
+[Here](./CHANGELOG.md)

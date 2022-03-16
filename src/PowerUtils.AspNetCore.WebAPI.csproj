@@ -13,7 +13,7 @@
     <PackageId>PowerUtils.AspNetCore.WebAPI</PackageId>
     <title>PowerUtils.AspNetCore.WebAPI</title>
     <Product>PowerUtils.AspNetCore.WebAPI</Product>
-    <Version>1.1.0</Version>
+    <Version>2.0.0</Version>
 
     <Authors>Nelson Nobre</Authors>
     <Company>TechNobre</Company>
@@ -24,7 +24,11 @@
 
     <Description>Extensions, Helpers, Utils and Attributes for building WebAPIs with AspNetCore</Description>
     <PackageReleaseNotes>
-      - Changed method 'ProblemFactory.ClearResponse()' to 'static' ;
+      - Attributes module has been moved to PowerUtils.AspNetCore.Extensions project so it can be used individually;
+      - Extensions module has been moved to PowerUtils.AspNetCore.Extensions project so it can be used individually;
+      - ErrorHandler module has been moved to PowerUtils.AspNetCore.ErrorHandler project so it can be used individually;
+      - Validation notifications middleware has been moved to PowerUtils.AspNetCore.ErrorHandler.Validations project so it can be used individually;
+      - Removed dependecy from Microsoft.AspNetCore.Mvc.Versioning;
     </PackageReleaseNotes>
     <Description>Extensions, Helpers, Utils and Attributes for building WebAPIs with AspNetCore</Description>
     <PackageTags>PowerUtils;Utils;Extensions;Helpers;Utils;Attributes;WebAPI;WebAPIs;AspNetCore</PackageTags>
@@ -70,8 +74,12 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
-    <PackageReference Include="PowerUtils.Validations" Version="2.1.0" />
+    <PackageReference Include="PowerUtils.AspNetCore.ErrorHandler.Validations" Version="1.0.0" />
+    <PackageReference Include="PowerUtils.Validations" Version="3.0.0" />
+    <PackageReference Include="PowerUtils.AspNetCore.ErrorHandler.ResponseTypes" Version="1.0.0" />
+    <PackageReference Include="PowerUtils.AspNetCore.ErrorHandler" Version="1.0.0" />
+    <PackageReference Include="PowerUtils.AspNetCore.Extensions" Version="1.0.0" />
+    <PackageReference Include="PowerUtils.GuardClauses.Validations" Version="1.0.0" />
   </ItemGroup>
 
 
