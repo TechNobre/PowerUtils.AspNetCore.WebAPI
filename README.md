@@ -1,5 +1,5 @@
 # PowerUtils.AspNetCore.WebAPI
-Extensions, Helpers, Utils and Attributes for building WebAPIs with AspNetCore
+NuGets aggregator to facilitate the construction of Web APIs
 
 ![Tests](https://github.com/TechNobre/PowerUtils.AspNetCore.WebAPI/actions/workflows/test-project.yml/badge.svg)
 
