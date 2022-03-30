@@ -79,7 +79,7 @@
     <PackageReference Include="PowerUtils.AspNetCore.ErrorHandler.ResponseTypes" Version="1.0.0" />
     <PackageReference Include="PowerUtils.AspNetCore.ErrorHandler" Version="1.0.0" />
     <PackageReference Include="PowerUtils.AspNetCore.Extensions" Version="1.1.0" />
-    <PackageReference Include="PowerUtils.GuardClauses.Validations" Version="2.0.0" />
+    <PackageReference Include="PowerUtils.GuardClauses.Validations" Version="2.1.0" />
   </ItemGroup>
 
 
