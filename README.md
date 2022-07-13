@@ -1,7 +1,7 @@
 # PowerUtils.AspNetCore.WebAPI
 NuGets aggregator to facilitate the construction of Web APIs
 
-![Tests](https://github.com/TechNobre/PowerUtils.AspNetCore.WebAPI/actions/workflows/test-project.yml/badge.svg)
+# :warning: DEPRECATED
 
 [![NuGet](https://img.shields.io/nuget/v/PowerUtils.AspNetCore.WebAPI.svg)](https://www.nuget.org/packages/PowerUtils.AspNetCore.WebAPI)
 [![Nuget](https://img.shields.io/nuget/dt/PowerUtils.AspNetCore.WebAPI.svg)](https://www.nuget.org/packages/PowerUtils.AspNetCore.WebAPI)
